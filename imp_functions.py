@@ -35,7 +35,7 @@ def create_scaled_data(train, test):
 #create distribution wise training and validation sets
 def create_distribution_train_val(dist_list):
   t_v_list = []
-  for d in distribution_list_train:
+  for d in dist_list:
     X = d.iloc[:, :-1].values
     y = d.iloc[:, -1].values
     Xd_train, Xd_val, yd_train, yd_val = train_test_split(X, y, test_size=0.2, random_state=1)
