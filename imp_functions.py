@@ -1,4 +1,3 @@
-from sklearn.model_selection import train_test_split
 
 def convert_to_numerical(c_f_list, df):
   for feature in c_f_list:
