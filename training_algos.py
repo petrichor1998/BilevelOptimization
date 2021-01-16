@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import torch 
 
-def train_bilevel(epochs, k, tv_list, w_list, model, e1, e2):
+def train_bilevel(epochs, k, tv_list, w_list, model, e1, e2, L):
   for t in range(epochs):
     train_loss = 0
     Ui_loss_params_list = []
@@ -64,7 +64,7 @@ def train_bilevel(epochs, k, tv_list, w_list, model, e1, e2):
   
   return model, w_list
   
-def train_bilevel_qform(epochs, k, tv_list, w_list, model, e1, e2, q):
+def train_bilevel_qform(epochs, k, tv_list, w_list, model, e1, e2, L, q):
   for t in range(epochs):
     train_loss = 0
     Ui_loss_params_list = []
@@ -130,7 +130,8 @@ def train_bilevel_qform(epochs, k, tv_list, w_list, model, e1, e2, q):
         w_list[i] = 0
 
   return model, w_list
-def train_full_data(epochs, X, y, model):
+
+def train_full_data(epochs, X, y, model, L):
   for t in range(epochs):
     ypred = model(torch.Tensor(X))
     train_loss = L(ypred, torch.Tensor(y).long())
@@ -145,7 +146,7 @@ def train_full_data(epochs, X, y, model):
       print(train_loss)
   return model
   
-def train_vanilla_qloss(epochs, k, tv_list, model, q):
+def train_vanilla_qloss(epochs, k, tv_list, model, L, q):
   for t in range(epochs):
     train_loss = 0
     Ui_loss_params_list = []
