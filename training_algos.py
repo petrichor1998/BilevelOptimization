@@ -13,8 +13,8 @@ def train_bilevel(epochs, k, tv_list, w_list, model, e1, e2):
       else:
         for param in model.parameters():
           param.grad.data.zero_()
-      ypred = model(torch.Tensor(train_val_list[i][0]))
-      L_Ui = L(ypred, torch.Tensor(train_val_list[i][2].astype(np.long)).long())
+      ypred = model(torch.Tensor(tv_list[i][0]))
+      L_Ui = L(ypred, torch.Tensor(tv_list[i][2].astype(np.long)).long())
       L_Ui.backward(retain_graph=True)
       
       grads_list_Ui = []
@@ -40,8 +40,8 @@ def train_bilevel(epochs, k, tv_list, w_list, model, e1, e2):
 
     val_loss_list = []
     for j in range(k):
-      ypred = model(torch.Tensor((train_val_list[j][1])))
-      val_loss_list.append(L(ypred, torch.Tensor(train_val_list[j][3]).long())) 
+      ypred = model(torch.Tensor((tv_list[j][1])))
+      val_loss_list.append(L(ypred, torch.Tensor(tv_list[j][3]).long())) 
 
     i_t = np.argmax(np.array(val_loss_list))
 
@@ -58,7 +58,7 @@ def train_bilevel(epochs, k, tv_list, w_list, model, e1, e2):
     val_loss_params = torch.cat(grads_list_val)
 
     for i in range(k):
-      w_list[i] = w_list[i] + eta1*eta2*torch.dot(val_loss_params, Ui_loss_params_list[i])
+      w_list[i] = w_list[i] + e1*e2*torch.dot(val_loss_params, Ui_loss_params_list[i])
       if w_list[i] < 0:
         w_list[i] = 0
   
