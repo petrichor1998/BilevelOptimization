@@ -34,6 +34,7 @@ def create_scaled_data(train, test):
 
 #create distribution wise training and validation sets
 def create_distribution_train_val(dist_list):
+  from sklearn.model_selection import train_test_split
   t_v_list = []
   for d in dist_list:
     X = d.iloc[:, :-1].values
