@@ -14,6 +14,7 @@ def create_distributions(df, f_list):
 #creating X_train and y_train for the full dataset
 def create_scaled_data(train, test):
   from sklearn.model_selection import train_test_split
+  from sklearn import preprocessing
   
   X = train.iloc[:, :-1].values
   y = train.iloc[:, -1].values
