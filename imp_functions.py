@@ -1,9 +1,9 @@
 
 def convert_to_numerical(c_f_list, df):
 	for feature in c_f_list:
-	labels = df[feature].astype('category').cat.categories.tolist()
-	replace_dict = {feature : {k: v for k,v in zip(labels,list(range(1,len(labels)+1)))}}
-	df.replace(replace_dict, inplace=True)
+		labels = df[feature].astype('category').cat.categories.tolist()
+		replace_dict = {feature : {k: v for k,v in zip(labels,list(range(1,len(labels)+1)))}}
+		df.replace(replace_dict, inplace=True)
 
 #creating distributions 
 def create_distributions(df, f_list):
@@ -67,12 +67,12 @@ def calculate_dist_accuracy(dist_list, model, L, optimizer):
 	accuracy_list = []
 	min_max_scaler = preprocessing.MinMaxScaler()
 	for d in dist_list:
-	  X_scaled = min_max_scaler.fit_transform(d.values[:, :-1])
-	  ypred_test = model(torch.Tensor(X_scaled))
-	  values, indices = torch.max(ypred_test, 1)
-	  correct = torch.eq(indices, torch.Tensor(d.values[:, -1])).sum()
-	  accuracy = correct.item()/len(indices)
-	  accuracy_list.append(accuracy)
+		X_scaled = min_max_scaler.fit_transform(d.values[:, :-1])
+		ypred_test = model(torch.Tensor(X_scaled))
+		values, indices = torch.max(ypred_test, 1)
+		correct = torch.eq(indices, torch.Tensor(d.values[:, -1])).sum()
+		accuracy = correct.item()/len(indices)
+		accuracy_list.append(accuracy)
 
 	for a in accuracy_list:
 	  print(a)
