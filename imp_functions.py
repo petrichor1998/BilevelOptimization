@@ -7,7 +7,7 @@ def convert_to_numerical(c_f_list, df):
 
 #creating distributions 
 def create_distributions(df, f_list):
-  d_list = [y for x, y in df.groupby(f_list, as_index=False)]
+	d_list = [y for x, y in df.groupby(f_list, as_index=False)]
 
   return d_list
 
