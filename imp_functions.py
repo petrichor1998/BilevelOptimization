@@ -51,7 +51,7 @@ def create_distribution_train_val(dist_list):
 
 	return t_v_list
 
-def calculate_total_accuracy(X, y, model, L, optimizer):
+def calculate_total_accuracy(X, y, model):
 	with torch.no_grad():
 		ypred_test = model(torch.Tensor(X))
 		values, indices = torch.max(ypred_test, 1)
@@ -62,7 +62,7 @@ def calculate_total_accuracy(X, y, model, L, optimizer):
 		print("total number of items: {}".format(len(indices)))
 		print("Accuracy: {}".format(accuracy))
 
-def calculate_dist_accuracy(dist_list, model, L, optimizer):
+def calculate_dist_accuracy(dist_list, model):
 	with torch.no_grad():
 		accuracy_list = []
 		min_max_scaler = preprocessing.MinMaxScaler()
