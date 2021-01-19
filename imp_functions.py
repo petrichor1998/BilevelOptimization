@@ -39,15 +39,15 @@ def create_distribution_train_val(dist_list):
 
 	t_v_list = []
 	for d in dist_list:
-	X = d.iloc[:, :-1].values
-	y = d.iloc[:, -1].values
-	Xd_train, Xd_val, yd_train, yd_val = train_test_split(X, y, test_size=0.2, random_state=1)
+		X = d.iloc[:, :-1].values
+		y = d.iloc[:, -1].values
+		Xd_train, Xd_val, yd_train, yd_val = train_test_split(X, y, test_size=0.2, random_state=1)
 
-	min_max_scaler = preprocessing.MinMaxScaler()
-	Xd_train_scaled = min_max_scaler.fit_transform(Xd_train)
-	Xd_val_scaled = min_max_scaler.fit_transform(Xd_val) 
+		min_max_scaler = preprocessing.MinMaxScaler()
+		Xd_train_scaled = min_max_scaler.fit_transform(Xd_train)
+		Xd_val_scaled = min_max_scaler.fit_transform(Xd_val) 
 
-	t_v_list.append((Xd_train_scaled, Xd_val_scaled, yd_train, yd_val))
+		t_v_list.append((Xd_train_scaled, Xd_val_scaled, yd_train, yd_val))
 
 	return t_v_list
 
