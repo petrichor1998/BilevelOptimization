@@ -47,9 +47,9 @@ def create_distribution_train_val(dist_list, scaler):
 		Xd_train, Xd_val, yd_train, yd_val = train_test_split(X, y, test_size=0.2, random_state=1)
 
 	Xd_train_scaled = scaler.fit_transform(Xd_train)
-		Xd_val_scaled = scaler.transform(Xd_val) 
+	Xd_val_scaled = scaler.transform(Xd_val) 
 
-		t_v_list.append((Xd_train_scaled, Xd_val_scaled, yd_train, yd_val))
+	t_v_list.append((Xd_train_scaled, Xd_val_scaled, yd_train, yd_val))
 
 	return t_v_list
 
